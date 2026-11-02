@@ -1,0 +1,94 @@
+<mxfile host="app.diagrams.net">
+  <diagram id="eda-caso-foro" name="TDA Pila - Arquitectura y Memoria">
+    <mxGraphModel dx="1971" dy="1029" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="950" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="header" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#112D4E;strokeColor=#112D4E;strokeWidth=2;fontColor=#FAFAFA;fontSize=27;align=center;verticalAlign=middle;spacing=10;" value="&lt;b&gt;ARQUITECTURA Y MEMORIA — TDA PILA (STACK–LIFO)&lt;/b&gt;&lt;br&gt;Caso: Editor de texto con Deshacer (Undo) y Rehacer (Redo)" vertex="1">
+          <mxGeometry height="100" width="1550" x="25" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="a_title" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EBF4FC;strokeColor=#1D6096;strokeWidth=2;fontColor=#112D4E;fontSize=23;align=center;verticalAlign=middle;spacing=10;" value="1. CASO DEL FORO: MECANISMO UNDO / REDO" vertex="1">
+          <mxGeometry height="50" width="990" x="30" y="150" as="geometry" />
+        </mxCell>
+        <mxCell id="user" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EBF4FC;strokeColor=#1D6096;strokeWidth=2;fontColor=#112D4E;fontSize=19;align=center;verticalAlign=middle;spacing=10;" value="USUARIO&lt;br&gt;Escribir / deshacer" vertex="1">
+          <mxGeometry height="85" width="195" x="65" y="235" as="geometry" />
+        </mxCell>
+        <mxCell id="interface" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EBF4FC;strokeColor=#1D6096;strokeWidth=2;fontColor=#112D4E;fontSize=19;align=center;verticalAlign=middle;spacing=10;" value="EDITOR DE TEXTO&lt;br&gt;Estado: textoActual" vertex="1">
+          <mxGeometry height="85" width="240" x="320" y="235" as="geometry" />
+        </mxCell>
+        <mxCell id="controller" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF3E7;strokeColor=#D87922;strokeWidth=2;fontColor=#112D4E;fontSize=19;align=center;verticalAlign=middle;spacing=10;" value="CONTROL DEL HISTORIAL&lt;br&gt;&lt;b&gt;CasoForo.java&lt;/b&gt;" vertex="1">
+          <mxGeometry height="85" width="340" x="630" y="235" as="geometry" />
+        </mxCell>
+        <mxCell id="undo" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F1EEFB;strokeColor=#6143A0;strokeWidth=2;fontColor=#112D4E;fontSize=19;align=center;verticalAlign=middle;spacing=10;" value="&lt;b&gt;PILA DESHACER — LIFO&lt;/b&gt;&lt;br&gt;Estados anteriores&lt;br&gt;push() | pop() | peek()" vertex="1">
+          <mxGeometry height="112" width="360" x="85" y="385" as="geometry" />
+        </mxCell>
+        <mxCell id="redo" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EBF7F0;strokeColor=#237753;strokeWidth=2;fontColor=#112D4E;fontSize=19;align=center;verticalAlign=middle;spacing=10;" value="&lt;b&gt;PILA REHACER — LIFO&lt;/b&gt;&lt;br&gt;Estados deshechos&lt;br&gt;push() | pop() | peek()" vertex="1">
+          <mxGeometry height="112" width="360" x="588" y="385" as="geometry" />
+        </mxCell>
+        <mxCell id="rule" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#FFFFFF;strokeWidth=2;fontColor=#112D4E;fontSize=18;align=center;verticalAlign=middle;spacing=10;" value="Nueva escritura después de Undo: vaciar la pila Rehacer." vertex="1">
+          <mxGeometry height="42" width="863" x="85" y="513" as="geometry" />
+        </mxCell>
+        <mxCell id="u1" edge="1" parent="1" source="user" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeColor=#1D6096;strokeWidth=3;fontSize=16;" target="interface" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="u2" edge="1" parent="1" source="interface" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeColor=#1D6096;strokeWidth=3;fontSize=16;" target="controller" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="u3" edge="1" parent="1" source="controller" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeColor=#6143A0;strokeWidth=3;fontSize=16;" target="undo" value="guarda estados">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="u4" edge="1" parent="1" source="controller" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeColor=#237753;strokeWidth=3;fontSize=16;" target="redo" value="recupera estados">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="u5" edge="1" parent="1" source="undo" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeColor=#6143A0;strokeWidth=3;fontSize=16;" target="redo" value="UNDO: pop → push">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="u6" edge="1" parent="1" source="redo" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeColor=#237753;strokeWidth=3;fontSize=16;" target="undo" value="REDO: pop → push">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="m_title" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF3E7;strokeColor=#D87922;strokeWidth=2;fontColor=#112D4E;fontSize=22;align=center;verticalAlign=middle;spacing=10;" value="2. STACK DE JVM VS HEAP" vertex="1">
+          <mxGeometry height="50" width="530" x="1040" y="150" as="geometry" />
+        </mxCell>
+        <mxCell id="stack" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EBF4FC;strokeColor=#1D6096;strokeWidth=2;fontColor=#112D4E;fontSize=19;align=center;verticalAlign=middle;spacing=10;" value="&lt;b&gt;STACK (ejecución Java)&lt;/b&gt;&lt;br&gt;Marcos de métodos y variables locales&lt;br&gt;Referencias locales: editor" vertex="1">
+          <mxGeometry height="124" width="480" x="1065" y="220" as="geometry" />
+        </mxCell>
+        <mxCell id="heap" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EBF7F0;strokeColor=#237753;strokeWidth=2;fontColor=#112D4E;fontSize=19;align=center;verticalAlign=middle;spacing=10;" value="&lt;b&gt;HEAP (memoria dinámica)&lt;/b&gt;&lt;br&gt;Objetos editor y pilas; Strings&lt;br&gt;Object[] para estados; nodos de listas" vertex="1">
+          <mxGeometry height="135" width="480" x="1065" y="392" as="geometry" />
+        </mxCell>
+        <mxCell id="ref" edge="1" parent="1" source="stack" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeColor=#D87922;strokeWidth=3;fontSize=16;" target="heap" value="referencias">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="q_title" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EBF7F0;strokeColor=#237753;strokeWidth=2;fontColor=#112D4E;fontSize=22;align=center;verticalAlign=middle;spacing=10;" value="3. COLA CIRCULAR FIFO (REQUISITO INTEGRADOR)" vertex="1">
+          <mxGeometry height="50" width="990" x="30" y="580" as="geometry" />
+        </mxCell>
+        <mxCell id="q_sub" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#FFFFFF;strokeWidth=2;fontColor=#112D4E;fontSize=18;align=center;verticalAlign=middle;spacing=10;" value="Capacidad 5 | Ejemplo de tres inserciones | FRONT = 0 | REAR = 2" vertex="1">
+          <mxGeometry height="45" width="920" x="65" y="644" as="geometry" />
+        </mxCell>
+        <mxCell id="q0" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EBF4FC;strokeColor=#1D6096;strokeWidth=2;fontColor=#112D4E;fontSize=19;align=center;verticalAlign=middle;spacing=10;" value="&lt;b&gt;índice 0&lt;/b&gt;&lt;br&gt;A" vertex="1">
+          <mxGeometry height="80" width="160" x="70" y="705" as="geometry" />
+        </mxCell>
+        <mxCell id="q1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EBF4FC;strokeColor=#1D6096;strokeWidth=2;fontColor=#112D4E;fontSize=19;align=center;verticalAlign=middle;spacing=10;" value="&lt;b&gt;índice 1&lt;/b&gt;&lt;br&gt;B" vertex="1">
+          <mxGeometry height="80" width="160" x="255" y="705" as="geometry" />
+        </mxCell>
+        <mxCell id="q2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EBF4FC;strokeColor=#1D6096;strokeWidth=2;fontColor=#112D4E;fontSize=19;align=center;verticalAlign=middle;spacing=10;" value="&lt;b&gt;índice 2&lt;/b&gt;&lt;br&gt;C" vertex="1">
+          <mxGeometry height="80" width="160" x="440" y="705" as="geometry" />
+        </mxCell>
+        <mxCell id="q3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EBF4FC;strokeColor=#1D6096;strokeWidth=2;fontColor=#112D4E;fontSize=19;align=center;verticalAlign=middle;spacing=10;" value="&lt;b&gt;índice 3&lt;/b&gt;&lt;br&gt;vacío" vertex="1">
+          <mxGeometry height="80" width="160" x="625" y="705" as="geometry" />
+        </mxCell>
+        <mxCell id="q4" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EBF4FC;strokeColor=#1D6096;strokeWidth=2;fontColor=#112D4E;fontSize=19;align=center;verticalAlign=middle;spacing=10;" value="&lt;b&gt;índice 4&lt;/b&gt;&lt;br&gt;vacío" vertex="1">
+          <mxGeometry height="80" width="160" x="810" y="705" as="geometry" />
+        </mxCell>
+        <mxCell id="mod" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EBF7F0;strokeColor=#237753;strokeWidth=2;fontColor=#112D4E;fontSize=19;align=center;verticalAlign=middle;spacing=10;" value="Enqueue: rear = (rear + 1) % capacidad&lt;br&gt;Dequeue: front = (front + 1) % capacidad" vertex="1">
+          <mxGeometry height="77" width="915" x="70" y="825" as="geometry" />
+        </mxCell>
+        <mxCell id="j_title" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F1EEFB;strokeColor=#6143A0;strokeWidth=2;fontColor=#112D4E;fontSize=22;align=center;verticalAlign=middle;spacing=10;" value="4. CORRESPONDENCIA CON JAVA" vertex="1">
+          <mxGeometry height="50" width="530" x="1040" y="580" as="geometry" />
+        </mxCell>
+        <mxCell id="classes" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#6143A0;strokeWidth=2;fontColor=#112D4E;fontSize=17;align=center;verticalAlign=middle;spacing=10;" value="&lt;b&gt;Caso principal: TDA Pila (Stack–LIFO)&lt;/b&gt;&lt;br&gt;&lt;br&gt;CasoForo.java: lógica de Undo/Redo&lt;br&gt;PilaLIFO.java: historial con Object[]&lt;br&gt;Main.java: demostración&lt;br&gt;ColaCircularFIFO.java: avance modular&lt;br&gt;ListaEnlazada.java: nodos en Heap&lt;br&gt;ArregloLineal.java: arreglos y matrices&lt;br&gt;&lt;br&gt;&lt;i&gt;El TDA Pila ≠ Stack de ejecución de Java.&lt;/i&gt;" vertex="1">
+          <mxGeometry height="260" width="490" x="1060" y="645" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
